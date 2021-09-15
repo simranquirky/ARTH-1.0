@@ -1,9 +1,9 @@
 ## THE ARCHITECTURE INCLUDES:
-Web server configured on EC2 instance.
-Document Root(var/www/html) made persistent by mounting on EBS Block Device.
-Static Objects used in code such as pictures stored in S3
-Setting up content delivery network using Cloudfront and using the domain as S3 bucket.
-Finally place the Cloudfront URL on the webapp code for security and low latency.
+- Web server configured on EC2 instance.
+- Document Root(var/www/html) made persistent by mounting on EBS Block Device.
+- Static Objects used in code such as pictures stored in S3
+- Setting up content delivery network using Cloudfront and using the domain as S3 bucket.
+- Finally place the Cloudfront URL on the webapp code for security and low latency.
 ### 1. LAUNCH AN EC2 INSTANCE
 We have discussed the way to launch an instance using aws cli, in our previous Article . Click here to read it.
 
