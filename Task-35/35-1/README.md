@@ -2,6 +2,8 @@
 # Creating a Custom Image by Using Python Code OpenCV
 
 Our output will look like:
+
+
 ![Screenshot (495)](https://user-images.githubusercontent.com/60690997/134287709-2495aabb-566a-40e2-9d33-7530bb39d4d6.png)
 
 
