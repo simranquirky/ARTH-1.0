@@ -4,7 +4,7 @@
 yum install httpd -y
 yum install python3 -y
 yum install docker -y
-cd Docker-Arth_Task-39/
+cd ARTH-1.0/TASK-39/
 mv index.html /var/www/html
 mv style.css /var/www/html
 mv main.js /var/www/html
