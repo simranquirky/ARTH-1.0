@@ -1,0 +1,4 @@
+---
+# vars file for instance_prov
+aws_access_key: <your access key>
+aws_secret_key: <your secret key>

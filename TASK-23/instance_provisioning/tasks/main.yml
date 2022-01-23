@@ -1,0 +1,31 @@
+---
+# tasks file for instance_prov
+- name: "Launching a Master node"
+  amazon.aws.ec2:
+    key_name: "key"
+    region: "ap-south-1"
+    instance_type: "t2.micro"
+    image: "ami-08e0ca9924195beba"
+    wait: yes
+    group_id: "sg-02627b2e5ec2fb8b9"
+    count: 1
+    vpc_subnet_id: "subnet-0ba7fc774a7649fcc"
+    assign_public_ip: yes
+    instance_tags:
+            Name: Kube_Master_node
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+- name: "Launching two slave nodes"
+  amazon.aws.ec2:
+    key_name: "key"
+    region: "ap-south-1"
+    instance_type: "t2.micro"
+    image: "ami-08e0ca9924195beba"
+    wait: yes
+    group_id: "sg-02627b2e5ec2fb8b9"
+    vpc_subnet_id: "subnet-0ba7fc774a7649fcc"
+    count: 2
+    instance_tags:
+            Name: Kube_slave_node
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
