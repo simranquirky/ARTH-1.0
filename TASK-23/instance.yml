@@ -1,0 +1,4 @@
+- hosts: "localhost"
+  roles:
+          - name: "Provisioning ec2 Instances"
+            role: "root/instance_prov"

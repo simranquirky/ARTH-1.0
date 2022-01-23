@@ -1,0 +1,4 @@
+- hosts: master
+  roles:
+          - name: "Launching WORDPRESS AND MYSQL"
+            role: "wp_sql"

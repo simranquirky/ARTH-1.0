@@ -1,0 +1,4 @@
+- hosts: "localhost"
+  roles:
+          - name: "Creating VPC for Ec2-instances"
+            role: "root/vpc"
