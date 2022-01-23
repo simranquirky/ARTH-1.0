@@ -1,0 +1,66 @@
+---
+# tasks file for vpc
+- name: Creating VPC
+  ec2_vpc_net:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      name: "Kube_VPC"
+      cidr_block: "{{ vpcCidrBlock }}"
+      region: "{{ region }}"
+      dns_support: yes
+      dns_hostnames: yes
+      state: present
+  register: vpc_results
+- name: create ec2 vpc internet gateway
+  ec2_vpc_igw:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      vpc_id: "{{ vpc_results.vpc.id }}"
+      region: "{{ region }}"
+      state: present
+      tags:
+        Name: "Kube_gateway"
+  register: igw_result
+- name: create ec2 vpc subnet
+  ec2_vpc_subnet:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      vpc_id: "{{ vpc_results.vpc.id }}"
+      region: "{{ region }}"
+      az: "{{ zone }}"
+      state: present
+      cidr: "{{ subNetCidrBlock }}"
+      map_public: yes
+      resource_tags:
+        Name: "Kube_subnet"
+  register: subnet_result
+- name: create ec2 security group
+  ec2_group:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      vpc_id: "{{ vpc_results.vpc.id }}"
+      region: "{{ region }}"
+      state: present
+      name: "Kube_security"
+      description: "Kube_Security_Group"
+      tags:
+        Name: "Kube_Security_grp"
+      rules:
+      - proto: all
+        cidr_ip: "{{ portCidrBlock }}"
+        rule_desc: Allowing ALL TRAFFIC
+  register: security_group_results
+
+- name: Creating routes
+  ec2_vpc_route_table:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      vpc_id: "{{ vpc_results.vpc.id }}"
+      region: "{{ region }}"
+      state: present
+      tags:
+        Name: "Kube_RouteTable"
+      subnets: [ "{{ subnet_result.subnet.id }}" ]
+      routes:
+        - dest: "{{ destinationCidrBlock }}"
+          gateway_id: "{{ igw_result.gateway_id }}"

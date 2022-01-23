@@ -1,0 +1,42 @@
+---
+# tasks file for wp_sql
+- name: "Launching wordpress application"
+  shell: "kubectl run wp1 --image=wordpress:5.1.1-php7.3-apache"
+  register: kwp
+
+- debug:
+        var: "kwp.stdout_lines"
+
+- name: "Launching mysql application"
+  shell: "kubectl run mydb1 --image=mysql:5.7 --env=MYSQL_ROOT_PASSWORD=*****     --env=MYSQL_DATABASE=mywp  --env=MYSQL_USER=shivani  --env=MYSQL_PASSWORD=****"
+  register: mysql
+
+- debug:
+   var: "mysql.stdout_lines"
+
+- name: "Exposing wordpess"
+  shell: "kubectl expose pods wp1  --type=NodePort   --port=80"
+  register: expose
+  ignore_errors: yes
+
+- debug:
+    var: "expose.stdout_lines"
+- name: "get service"
+  shell: "kubectl get svc"
+  register: k8ss
+
+- debug:
+    var: "k8ss.stdout_lines"
+
+- name: "Pausing playbook for 90 secounds"
+  pause:
+    seconds: 90
+
+- name: "Getting database IP"
+  shell: "kubectl get pods -o wide"
+  register: DB_ip
+
+- debug:
+    var: "DB_ip.stdout_lines"
+
+~

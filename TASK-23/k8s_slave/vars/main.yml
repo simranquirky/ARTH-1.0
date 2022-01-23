@@ -1,0 +1,4 @@
+---
+# vars file for kube_slave
+ipp: "10.240.0.0/16"
+~
