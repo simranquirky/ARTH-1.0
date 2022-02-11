@@ -1,0 +1,17 @@
+---
+# vars file for ec2-launch
+
+image: "ami-089c6f2e3866f0f14"
+instance_type: "t2.micro"
+region: "us-east-2"
+key: testingkey
+vpc_subnet_id: "subnet-2321516f"
+security_group_id: "sg-07a58bacace819405"
+OS_Names:
+        - "K8S_Master"
+        - "K8S_Slave1"
+        - "K8S_Slave2"
+
+akey: 'xxxxxxxxxxxxxx'
+skey: 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
+
