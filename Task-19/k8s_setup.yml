@@ -1,0 +1,10 @@
+- hosts: ["tag_Name_K8S_Master"]
+  roles:
+          - name: "config master node.."
+            role: "/wstask19/k8s-master"
+
+- hosts: ["tag_Name_K8S_Slave1", "tag_Name_K8S_Slave2"]
+  roles:
+          - name: "config slave nodes.."
+            role: "/wstask19/k8s-slaves"
+
