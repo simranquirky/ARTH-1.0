@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoHub</title>
+</head>
+<style>
+    #overview{
+        background-color: cyan;
+    }
+    #formBox{
+    	margin-left: 30%;
+        width: 40%;
+        height: 40%;
+        background-color: white;
+        padding: 40px 60px 60px;
+        align-content: center;
+    }
+    .welcome{
+        width: 50%;
+        margin: 0 95vh 10vh 80vh;
+        font-size: 30px;
+
+    }
+    input{
+    	width: 85%;
+    	font-size: 25px;
+    	background-color: grey;
+    	color: white;
+    	border: 1px gradient white;
+		
+    }
+</style>
+<body id="overview">
+    <nav>
+        <div class="welcome">
+            <h3>Welcome to flask-mongodb app</h3>
+        </div>
+    </nav>
+    <section>
+    <div id="formBox">
+        <form action="/upload">
+            <input type="text" name="Name" id="Name" placeholder="Enter your Name"><br/><br/><br/><br/>
+            <input type="email" name="Email" id="Email" placeholder="Enter your Email address"><br/><br/><br/>
+            Enter your date of birth <br/><input type="date" name="date" id="date"><br/><br/><br/>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</section>
+</body>
+</html>
